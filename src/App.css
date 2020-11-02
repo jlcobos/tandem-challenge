@@ -41,4 +41,8 @@ p {
   margin-bottom: 0;
 }
 
+.card-body {
+  min-height: 350px;
+}
+
 @import "~bootstrap/dist/css/bootstrap.css";

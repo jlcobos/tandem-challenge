@@ -1,4 +1,5 @@
 import './App.css';
+import NavBar from "./components/NavBar";
 import TriviaCardSet from './components/TriviaCardSet';
 import questionData from "./questionData.json";
 
@@ -16,7 +17,9 @@ function preProcessCardData(){
 function App() {
   const questions = preProcessCardData();
   return (
-    <div className="container py-5">
+    <div className="container-fluid">
+      <NavBar />
+      <hr />
       <TriviaCardSet questions={questions} />
     </div>
   );

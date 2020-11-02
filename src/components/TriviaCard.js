@@ -31,13 +31,15 @@ const TriviaCard = ({question: Q, saveSelectedAnswer, currentCardIndex, index, g
   return (
     <Row className={currentCardClass }>
       <Col sm="6" className="mx-auto">
-        <Card body>
-          <Alert renderAlert={renderAlert} alertText="Select an answer before submitting" />
-        <CardTitle>{question}</CardTitle>
-          <Answers answers={answers} setAnswer={setAnswer} selectedAnswer={selectedAnswer} answerSubmitted={answerSubmitted} correctAnswer={correct} />
-          <CardFooter className="px-0 d-flex justify-content-between">
-          <SubmitAnswer processSubmit={processSubmit} index={index} answerSubmitted={answerSubmitted} />
-          <GoToNextQuestionOrSubmit next={next} submitQuiz={submitQuiz} isLastQuestion={isLastQuestion} answerSubmitted={answerSubmitted} />
+        <Card className="d-flex h-100" body>
+          <div className="align-self-start w-100 h-100">
+            <Alert renderAlert={renderAlert} alertText="Select an answer before submitting" />
+            <CardTitle>{question}</CardTitle>
+            <Answers answers={answers} setAnswer={setAnswer} selectedAnswer={selectedAnswer} answerSubmitted={answerSubmitted} correctAnswer={correct} />
+          </div>
+          <CardFooter className="px-0 d-flex justify-content-between bg-white">
+            <SubmitAnswer processSubmit={processSubmit} index={index} answerSubmitted={answerSubmitted} />
+            <GoToNextQuestionOrSubmit next={next} submitQuiz={submitQuiz} isLastQuestion={isLastQuestion} answerSubmitted={answerSubmitted} />
           </CardFooter>
         </Card>
       </Col>
@@ -56,7 +58,7 @@ function Answers({answers, setAnswer, selectedAnswer, answerSubmitted, correctAn
       const selectedAnswerColor = selectedAnswer === answer ? "info" : "outline-info";
   
       return (
-        <Button key={index} color={selectedAnswerColor} className="d-flex align-items-center my-2" onClick={() => setAnswer(answer)}>
+        <Button key={index} color={selectedAnswerColor} className="d-flex align-items-center my-2 w-100" onClick={() => setAnswer(answer)}>
           <CardText className="mr-2">
             {number}:
           </CardText>
@@ -74,7 +76,7 @@ function CorrectAnswer({correctAnswer, selectedAnswer}) {
   const answerIcon = isCorrect ? faCheck : faTimes;
   const iconColor = isCorrect ? "text-success" : "text-danger";
   return (
-    <div>
+    <div className="">
       <p>
         The correct answer is: <b>{correctAnswer}</b>
       </p>
@@ -104,7 +106,7 @@ function GoToNextQuestionOrSubmit({next, submitQuiz, isLastQuestion, answerSubmi
   const onClickFunction = isLastQuestion ? submitQuiz : next;
   if (answerSubmitted) {
     return (
-      <Button color="warning" className="d-flex align-items-center" onClick={onClickFunction}>
+      <Button color="warning" className="d-flex align-items-end" onClick={onClickFunction}>
         <CardText>{buttonText}</CardText>
       </Button>
     );
